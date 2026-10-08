@@ -1,0 +1,334 @@
+/* ============================================================
+   WIKI JOJO - estilos.css
+   Un único archivo enlazado desde todas las páginas.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600&display=swap');
+
+/* ---------- Variables de color (cambia aquí la paleta) ---------- */
+:root {
+  --fondo: #14062b;
+  --fondo2: #2a0f55;
+  --tarjeta: rgba(255, 255, 255, 0.07);
+  --borde: #f5c518;
+  --oro: #f5c518;
+  --rosa: #ff3d9a;
+  --morado: #7b2ff7;
+  --texto: #f3ecff;
+  --texto-suave: #c9b8ee;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  line-height: 1.65;
+  color: var(--texto);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 61, 154, 0.25), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(123, 47, 247, 0.35), transparent 45%),
+    linear-gradient(160deg, var(--fondo), var(--fondo2));
+  background-attachment: fixed;
+}
+::selection { background: var(--rosa); color: #fff; }
+a { color: var(--oro); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--rosa); text-decoration: underline; }
+
+/* ---------- Cabecera y menú ---------- */
+header {
+  text-align: center;
+  padding: 28px 16px 0;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.04) 0 14px, transparent 14px 28px),
+    linear-gradient(90deg, #3a0f7a, #8b1fa9, #3a0f7a);
+  border-bottom: 4px solid var(--oro);
+}
+header h1 {
+  margin: 0 0 14px;
+  font-family: 'Bangers', Impact, sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  letter-spacing: 3px;
+  font-weight: 400;
+  color: var(--oro);
+  text-shadow: 3px 3px 0 var(--rosa), 6px 6px 0 rgba(0,0,0,.45);
+}
+header hr { display: none; }
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  font-size: 0;               /* oculta los "|" del HTML */
+  background: rgba(20, 6, 43, 0.92);
+  backdrop-filter: blur(6px);
+}
+nav a {
+  font-size: .9rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  color: var(--texto);
+  background: linear-gradient(135deg, var(--morado), #5a1fc4);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  transition: transform .2s, border-color .2s, background .2s;
+}
+nav a:hover {
+  text-decoration: none;
+  color: #1a0a33;
+  background: var(--oro);
+  border-color: #fff;
+  transform: translateY(-2px) rotate(-1.5deg);
+}
+
+/* ---------- Contenido principal ---------- */
+main {
+  max-width: 1050px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+main > section, main > details, main > fieldset {
+  scroll-margin-top: 80px;
+}
+section {
+  background: var(--tarjeta);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 20px 26px;
+  margin-bottom: 26px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  clear: both;
+  overflow: hidden;
+}
+h2 {
+  font-family: 'Bangers', Impact, sans-serif;
+  font-weight: 400;
+  font-size: 2.3rem;
+  letter-spacing: 2px;
+  color: var(--oro);
+  margin: 0 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 3px solid var(--rosa);
+  text-shadow: 2px 2px 0 rgba(0,0,0,.5);
+}
+main > h2 { margin-top: 0; }
+h3 {
+  font-family: 'Bangers', Impact, sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  color: var(--rosa);
+}
+p { margin: .6em 0; }
+b { color: #fff; }
+small { color: var(--texto-suave); }
+mark { background: var(--oro); color: #1a0a33; padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+
+/* ---------- Imágenes ---------- */
+img {
+  object-fit: contain;        /* muestra la imagen ENTERA sin recortar ni deformar */
+  object-position: center;
+  background: rgba(0,0,0,.35); /* relleno de los huecos laterales */
+  /* Alternativa: 'cover' + object-position: top recorta pero llena el recuadro */
+  border-radius: 12px;
+  border: 3px solid var(--oro);
+  box-shadow: 0 4px 14px rgba(0,0,0,.5);
+  transition: transform .25s, box-shadow .25s;
+}
+img:hover {
+  transform: scale(1.06) rotate(-1deg);
+  box-shadow: 0 0 20px var(--rosa);
+}
+
+/* ---------- Listas ---------- */
+ul, ol { padding-left: 24px; }
+li::marker { color: var(--oro); }
+
+/* Lista de partes en el inicio: tarjetas en cuadrícula */
+#partes ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+}
+#partes li {
+  background: rgba(0,0,0,.25);
+  border: 2px solid rgba(245,197,24,.4);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  font-weight: 600;
+  transition: transform .2s, border-color .2s;
+}
+#partes li:hover { transform: translateY(-5px); border-color: var(--oro); }
+#partes li img { width: 130px; height: 190px; margin-top: 10px; }
+
+/* ---------- Definiciones ---------- */
+dt { color: var(--oro); font-weight: 600; margin-top: 10px; }
+dd { margin: 2px 0 0 18px; color: var(--texto); }
+
+/* ---------- Tablas ---------- */
+table { border-collapse: collapse; }
+table[border] {
+  width: 100%;
+  margin: 14px 0;
+  border: 2px solid var(--oro);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0,0,0,.25);
+}
+table[border] caption {
+  caption-side: top;
+  font-family: 'Bangers', Impact, sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 1.5px;
+  color: var(--rosa);
+  padding-bottom: 6px;
+}
+table[border] th {
+  background: linear-gradient(135deg, var(--morado), #a31fc4);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: .8rem;
+  letter-spacing: 1px;
+}
+table[border] th, table[border] td {
+  border: 1px solid rgba(255,255,255,.18);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+table[border] tbody tr:nth-child(even) { background: rgba(255,255,255,.05); }
+table[border] tbody tr:hover { background: rgba(245,197,24,.15); }
+table.personajes td img, table.stands td img { width: 80px; height: 112px; }
+
+/* Tablas de imágenes (los cinco JoJos y galería) */
+.galeria, #inicio table { width: 100%; text-align: center; }
+.galeria td, #inicio td {
+  background: rgba(0,0,0,.25);
+  border: 2px solid rgba(245,197,24,.35);
+  border-radius: 14px;
+  font-weight: 600;
+  transition: background .2s;
+}
+.galeria td:hover, #inicio td:hover { background: rgba(255,61,154,.2); }
+.galeria { border-collapse: separate; border-spacing: 10px; }
+#inicio table { border-collapse: separate; border-spacing: 8px; }
+.galeria img { width: 120px; height: 170px; }
+#inicio td img { width: 130px; height: 190px; }
+
+/* ---------- Páginas de partes ---------- */
+figure.portada {
+  float: left;
+  margin: 0 26px 16px 0;
+  text-align: center;
+}
+figure.portada img { width: 220px; height: 310px; border-width: 4px; }
+figcaption { margin-top: 6px; font-size: .85rem; color: var(--texto-suave); font-style: italic; }
+
+fieldset {
+  border: 2px solid var(--oro);
+  border-radius: 14px;
+  background: var(--tarjeta);
+  padding: 12px 22px 16px;
+  margin-bottom: 26px;
+}
+legend {
+  font-family: 'Bangers', Impact, sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 1.5px;
+  color: #1a0a33;
+  background: var(--oro);
+  padding: 2px 16px;
+  border-radius: 999px;
+}
+fieldset.datos { overflow: hidden; }
+
+blockquote {
+  margin: 0;
+  padding: 12px 20px;
+  border-left: 6px solid var(--rosa);
+  background: rgba(0,0,0,.25);
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+}
+
+details {
+  background: var(--tarjeta);
+  border: 2px dashed var(--rosa);
+  border-radius: 12px;
+  padding: 10px 18px;
+  margin-bottom: 20px;
+  clear: both;
+}
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--oro);
+}
+summary:hover { color: var(--rosa); }
+
+/* ---------- Niveles de poder ---------- */
+fieldset.ficha table { background: none; border: none; width: auto; margin: 0; }
+fieldset.ficha td { border: none; padding: 4px 12px; }
+fieldset.ficha > table > tbody > tr > td:first-child { vertical-align: top; }
+fieldset.ficha img { width: 140px; height: 190px; }
+
+meter {
+  width: 240px;
+  height: 20px;
+  vertical-align: middle;
+  background: none;
+}
+meter::-webkit-meter-bar {
+  background: rgba(0,0,0,.45);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 10px;
+}
+meter::-webkit-meter-optimum-value    { background: linear-gradient(90deg, var(--oro), var(--rosa)); border-radius: 10px; }
+meter::-webkit-meter-suboptimum-value { background: linear-gradient(90deg, #ff9f1c, var(--oro)); border-radius: 10px; }
+meter::-webkit-meter-even-less-good-value { background: linear-gradient(90deg, #d7263d, #ff6b6b); border-radius: 10px; }
+meter::-moz-meter-bar { background: var(--oro); border-radius: 10px; }
+
+/* ---------- Pie ---------- */
+footer {
+  text-align: center;
+  padding: 10px 16px 30px;
+  color: var(--texto-suave);
+  font-size: .9rem;
+}
+hr {
+  border: none;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--oro), var(--rosa), transparent);
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 700px) {
+  figure.portada { float: none; margin: 0 auto 16px; }
+  section { padding: 14px 16px; }
+  meter { width: 150px; }
+  table.personajes, table.stands { display: block; overflow-x: auto; }
+  #inicio table { display: block; overflow-x: auto; }
+}
+
+/* ---------- Openings y vídeo ---------- */
+.boton {
+  display: inline-block;
+  padding: 9px 20px;
+  font-weight: 600;
+  color: #1a0a33;
+  background: linear-gradient(135deg, var(--oro), #ff9f1c);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.4);
+  transition: transform .2s, box-shadow .2s;
+}
+.boton:hover { color: #1a0a33; text-decoration: none; transform: translateY(-3px); box-shadow: 0 0 16px var(--rosa); }
+.video { position: relative; aspect-ratio: 16 / 9; max-width: 720px; margin-top: 14px; }
+.video iframe { width: 100%; height: 100%; border: 3px solid var(--oro); border-radius: 12px; }
